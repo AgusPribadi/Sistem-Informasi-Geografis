@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lihat Data ATM</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mt-4">Data ATM</h1>
+            <ul class="list-group">
+                {% for atm in data_atm %}
+                <li class="list-group-item">
+                    {{ atm.namaATM }} - {{ atm.alamat }} (Latitude: {{ atm.latitude }}, Longitude: {{ atm.longitude }})
+                    <a href="{% url 'tampilkan_peta' %}?latitude={{ atm.latitude }}&longitude={{ atm.longitude }}" class="btn btn-primary btn-sm float-right"> <i class="fa fa-eye"></i> Lihat di Peta </a>
+                </li>
+                {% empty %}
+                <li class="list-group-item">Tidak ada data ATM.</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'tambah_atm' %}" class="btn btn-success mt-3">Tambah ATM</a>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </body>
+</html>

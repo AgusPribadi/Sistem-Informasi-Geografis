@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Peta ATM</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <style>
+            #leaflet-map {
+                width: 100%;
+                height: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mt-4">Peta ATM</h1>
+            <div id="leaflet-map" class="mt-3"></div>
+            <a href="{% url 'tambah_atm' %}" class="btn btn-success mt-3">Tambah ATM</a>
+            <a href="{% url 'lihat_atm' %}" class="btn btn-secondary mt-3">Lihat Data ATM</a>
+        </div>
+
+        <script>
+            var map = L.map("leaflet-map");
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 19,
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(map);
+
+            var urlParams = new URLSearchParams(window.location.search);
+            var latitude = urlParams.get("latitude");
+            var longitude = urlParams.get("longitude");
+
+            if (latitude !== null && longitude !== null) {
+                map.setView([parseFloat(latitude), parseFloat(longitude)], 15);
+                var marker = L.marker([parseFloat(latitude), parseFloat(longitude)]).addTo(map);
+                marker.bindPopup("Lokasi ATM").openPopup();
+            } else {
+                var errorMessage = "Tidak dapat menemukan koordinat ATM yang valid.";
+                map.setView([0, 0], 2);
+                alert(errorMessage);
+            }
+        </script>
+    </body>
+</html>
