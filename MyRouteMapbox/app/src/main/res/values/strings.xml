@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyRouteMapbox</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiYWd1c3ByaWJhZGkzMzkiLCJhIjoiY2xvcjRjdHl1MHY5eDJucWxjbXdmM3I1YyJ9.84tUb9FuOLYZaAHT99vlKg</string>
+</resources>
